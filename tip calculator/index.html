@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="TipSplit — A premium tip calculator and bill splitter. Live-updating results as you type. Split bills instantly with no fuss." />
+  <title>TipSplit — Tip Calculator &amp; Bill Splitter</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- Ambient background orbs -->
+  <div class="bg-orbs" aria-hidden="true">
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+  </div>
+
+  <main class="app-wrapper">
+    <div class="card">
+
+      <!-- Header -->
+      <header class="card-header">
+        <div class="logo">
+          <span class="logo-icon" aria-hidden="true">⚡</span>
+          <h1>TipSplit</h1>
+        </div>
+        <p class="tagline">Split smarter, tip better</p>
+      </header>
+
+      <!-- Input Section -->
+      <div class="form-section">
+
+        <!-- Bill Amount -->
+        <div class="field-group">
+          <label class="field-label" for="bill-input">Bill Amount</label>
+          <div class="input-wrapper" id="bill-wrapper">
+            <span class="input-prefix" aria-hidden="true">₹</span>
+            <input
+              type="number"
+              id="bill-input"
+              class="field-input"
+              inputmode="decimal"
+              placeholder="0.00"
+              min="0"
+              step="0.01"
+              aria-describedby="bill-error"
+              autocomplete="off"
+              spellcheck="false"
+            />
+          </div>
+          <span class="error-msg" id="bill-error" role="alert" aria-live="assertive"></span>
+        </div>
+
+        <!-- Tip Percentage -->
+        <div class="field-group">
+          <label class="field-label" for="tip-input">Tip Percentage</label>
+          <div
+            class="tip-presets"
+            role="group"
+            aria-label="Quick tip percentage presets"
+          >
+            <button class="preset-btn" data-value="10" aria-pressed="false" id="preset-10">10%</button>
+            <button class="preset-btn" data-value="15" aria-pressed="false" id="preset-15">15%</button>
+            <button class="preset-btn" data-value="20" aria-pressed="false" id="preset-20">20%</button>
+          </div>
+          <div class="input-wrapper" id="tip-wrapper">
+            <input
+              type="number"
+              id="tip-input"
+              class="field-input"
+              inputmode="decimal"
+              placeholder="Custom %"
+              min="0"
+              max="100"
+              step="0.1"
+              aria-describedby="tip-error"
+              autocomplete="off"
+              spellcheck="false"
+            />
+            <span class="input-suffix" aria-hidden="true">%</span>
+          </div>
+          <span class="error-msg" id="tip-error" role="alert" aria-live="assertive"></span>
+        </div>
+
+        <!-- Number of People -->
+        <div class="field-group">
+          <label class="field-label" for="people-input">Number of People</label>
+          <div class="input-wrapper people-wrapper" id="people-wrapper">
+            <button
+              class="stepper-btn"
+              id="people-dec"
+              aria-label="Decrease number of people"
+              type="button"
+            >−</button>
+            <input
+              type="number"
+              id="people-input"
+              class="field-input people-input"
+              inputmode="numeric"
+              placeholder="1"
+              min="1"
+              max="1000"
+              step="1"
+              aria-describedby="people-error"
+              autocomplete="off"
+              spellcheck="false"
+            />
+            <button
+              class="stepper-btn"
+              id="people-inc"
+              aria-label="Increase number of people"
+              type="button"
+            >+</button>
+          </div>
+          <span class="error-msg" id="people-error" role="alert" aria-live="assertive"></span>
+        </div>
+
+      </div><!-- /form-section -->
+
+      <!-- Results Panel -->
+      <section
+        class="results-panel"
+        aria-label="Bill split results"
+        aria-live="polite"
+        aria-atomic="false"
+      >
+        <div class="results-inner">
+
+          <!-- Hero: Per-Person Amount -->
+          <div class="result-hero">
+            <span class="result-label">Each Person Pays</span>
+            <span class="result-hero-value" id="per-person">₹0.00</span>
+            <span class="rounding-note" id="rounding-note"></span>
+          </div>
+
+          <div class="result-divider" aria-hidden="true"></div>
+
+          <!-- Secondary results -->
+          <div class="result-secondary">
+            <div class="result-item">
+              <span class="result-label">Tip Amount</span>
+              <span class="result-value" id="tip-amount">₹0.00</span>
+            </div>
+            <div class="result-item">
+              <span class="result-label">Grand Total</span>
+              <span class="result-value" id="grand-total">₹0.00</span>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- Reset -->
+      <button class="reset-btn" id="reset-btn" type="button" aria-label="Reset all fields to their default values">
+        <span class="reset-icon" aria-hidden="true">↺</span>
+        Reset
+      </button>
+
+    </div><!-- /card -->
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
